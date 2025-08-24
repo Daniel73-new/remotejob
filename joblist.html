@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Jobs - Find Online Remote Jobs</title>
+  <link rel="icon" type="image/png" href="img/remoteJobsLogo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="CSS/header.css">
+
+
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Mulish", sans-serif;
+      background: #f9f9f9;
+    }
+
+    
+
+
+     .hero-section {
+  background-color: #f1f9fd; /* light bluish background */
+}
+
+.hero-section h2 {
+  font-size: 2.3rem;
+  color: #5e5c5c;
+}
+
+.hero-section p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.get-started-btn {
+  background-color: #c8f169 !important;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  margin-top: 5em;
+  padding: 8px 60px;
+}
+
+.hero-img {
+  max-width: 90%;
+  height: auto;
+}
+
+
+
+/* job list styling */
+
+ .job-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 40px;
+      transition: box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+       /* display: block !important; */
+    }
+ 
+    .job-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .badge-custom {
+      background-color: #f1f3f5;
+      color: #646363;
+      margin-right: 5px;
+      font-size: 0.95rem;
+    }
+    .job-title {
+      color: #007bff;
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+    .job-title .new {
+      color: red;
+      font-size: 0.8rem;
+      margin-left: 5px;
+    }
+    .job-location {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .job-desc {
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .posted-date {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <header class="border-bottom fixed-top bg-white shadow-sm custom-header">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <!-- Mobile Layout -->
+    <div class="d-flex align-items-center gap-2 d-md-none flex-grow-1">
+      <!-- Mobile Nav Toggle -->
+      <button class="btn" id="menuToggle">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+
+      <!-- Logo -->
+      <img src="img/remoteJobsLogo.svg" 
+           alt="RemoteJobs Logo" style="height:25px;">
+
+      <!-- Mobile Search Icon -->
+      <button class="btn search-btn ms-auto" id="mobileSearchToggle" type="button">
+        <i class="bi bi-search fs-5"></i>
+      </button>
+    </div>
+
+    <!-- Desktop Layout -->
+    <div class="d-none d-md-flex align-items-center justify-content-between flex-grow-1">
+      <!-- Logo -->
+      <div class="d-flex align-items-center">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" 
+             alt="RemoteJobs Logo" class="me-2" style="height:25px;">
+      </div>
+
+      <!-- Desktop Search Bar -->
+      <form class="d-flex search-bar my-2 my-md-0" role="search">
+        <input class="form-control me-2" type="search" 
+               placeholder="Enter keyword or title to find remote jobs" aria-label="Search">
+        <button class="btn search-btn" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+
+      <!-- Desktop Navigation -->
+      <div class="d-flex align-items-center gap-4">
+        <a href="remote.html" class="fw-semibold text-dark text-decoration-none">Find Remote Jobs</a>
+        <a href="contact.html" class="fw-semibold text-dark text-decoration-none">Contact</a>
+        <a href="formjob.html" class="btn btn-primary rounded-pill px-4">APPLY</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Search Overlay (Mobile Only) -->
+<div id="searchOverlay" class="search-overlay">
+  <div class="overlay-header d-flex align-items-center p-3">
+    <div class="input-group flex-grow-1">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="form-control" placeholder="Enter keyword or title" id="searchInput">
+    </div>
+    <button class="btn btn-link text-secondary ms-2 text-decoration-none" id="closeSearch">Cancel</button>
+  </div>
+
+  <div class="overlay-body p-3 flex-grow-1">
+    <ul class="list-unstyled" id="searchList">
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none"><strong>Dispatcher</strong></a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Housing inspection</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Book Keeping</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Copy writer</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Social Media Manager</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Accounting Payroll Clerk</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Customer service representative</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Data entry clerk</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Document pickup and delivery</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer (Pinned to Bottom) -->
+  <div class="overlay-footer text-center p-3">
+    <a href="#" class="btn w-100 rounded-pill" style="background:#eee;">Search Jobs</a>
+  </div>
+</div>
+
+
+<!-- Side Navigation -->
+<nav id="sideNav" class="side-nav">
+  <button class="close-btn" id="closeNav">&times;</button>
+  <a href="remote.html">Find Remote Jobs</a>
+  <a href="contact.html">Contact</a>
+  <a href="formjob.html">APPLY</a>
+</nav>
+
+
+
+  <section class="hero-section" style="padding-top:200px;padding-bottom: 100px;">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left Content -->
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="fw-bold mb-3">
+          Remote Jobs Hiring Now: Find Legit Work From Home Jobs
+        </h2>
+        <p class="mb-4 text-muted">
+          Explore legitimate work from home jobs hiring now and find the best remote jobs for you. Our research team vets each listing to ensure they are real work from home jobs with companies that are actually hiring. All of these job listings offer flexibility—including remote, freelance, part time, or flexible schedules—across more than 50 job categories. The jobs listed here have been recently added, so if you are looking for remote jobs hiring immediately, this is the perfect place to start.
+        </p>
+        <a href="formjob.html" class="btn btn-light text-dark rounded-pill get-started-btn">Find your remote job</a>
+      </div>
+
+      <!-- Right Image -->
+      <div class="col-lg-6 text-center">
+        <img src="img/remote-jobs-banner.avif"
+             alt="Man working remotely" class="img-fluid hero-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- job list -->
+ <div class="container py-5" id="jobs">
+    <h3 class="mb-4 fw-bold">Featuring Jobs in New US Jobs</h3>
+    <div id="jobList"></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- footer -->
+
+<footer class="footer bg-light py-5">
+  <div class="container">
+    <!-- Top Row: Logo + Social -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+      <a href="#" class="footer-logo mb-3 mb-md-0">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" alt="RemoteJobs.io Logo" height="40">
+      </a>
+
+      <div class="footer-social">
+        <a href="#" class="me-3 text-dark"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-dark"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Middle Row: Links -->
+    <div class="row mt-4">
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">About RemoteJobs.io</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-dark">Find Remote Jobs</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">How RemoteJobs.io Works</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Policies</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-dark">Privacy Policy</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">Terms of Use</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">CCPA/GDPR</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Customer Support</h6>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-telephone me-2"></i> 1-800-510-8550</li>
+          <li><i class="bi bi-calendar-event me-2"></i> Mon-Fri 9 AM - 6 PM CST</li>
+          <li><i class="bi bi-envelope me-2"></i> support@remotejobs.io</li>
+          <li class="mt-2"><a href="#" class="text-decoration-none text-dark">Contact Us</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">Job Search Vigilance</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Bottom Row -->
+    <div class="text-center small text-muted">
+      © 2025, Sonaga Tech Limited, Hamilton, Zweigniederlassung Luzern
+    </div>
+  </div>
+</footer>
+
+
+
+ <script>
+
+
+ const jobs = [
+      {
+        title: "Dispatcher",
+        company: "TechCorp Inc.",
+        type: "Full-Time",
+        salary: "$90,000 - $110,000 USD Annually",
+        state: "Remote, US",
+        city: "NY, SF, Mountain View",
+        description: "Join our Dispatch team to help individual and orgsnisation for easy delivery of goods.",
+        posted: "Today",
+        link: "#",
+        remote: "Remote Friendly"
+      },
+
+
+       {
+        title: "Housing inspection",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+      
+      {
+        title: "Book Keeping",
+        company: "CreativeSoft",
+        type: "Contract",
+        salary: "$70/hr USD",
+        state: "Remote, US",
+        city: "Denver",
+        description: "Looking for a book keeper with strong instincts and skills.",
+        posted: "Today",
+        link: "#",
+        remote: "Fully Remote"
+      },
+      {
+        title: "Copy writer",
+        company: "DataLayer",
+        type: "Full-Time",
+        salary: "$100,000 - $130,000 USD Annually",
+        state: "Remote, US",
+        city: "New York, NY, San Francisco, CA",
+        description: "Professional who crafts persuasive written content, or'copy,' used in marketing and advertising materials to promote products, services, or ideas.",
+        posted: "Today",
+        link: "#",
+        remote: "Remote Friendly"
+      },
+      {
+        title: "Social Media Manager",
+        company: "InfraX",
+        type: "Full-Time",
+        salary: "$110,000 - $140,000 USD Annually",
+        state: "Remote, US",
+        city: "",
+        description: "Work on cloud deployments, CI/CD pipelines, and infrastructure automation.",
+        posted: "Today",
+        link: "#",
+        remote: "Remote-First"
+      },
+      {
+        title: "Product Manager",
+        company: "VisionaryApps",
+        type: "Full-Time",
+        salary: "$120,000 - $150,000 USD Annually",
+        state: "Remote, US",
+        city: "",
+        description: "Own the product roadmap and collaborate with engineering and design teams.",
+        posted: "Today",
+        link: "#",
+        remote: "100% Remote"
+      },
+
+
+       {
+        title: "Manager, Clinical Documentation Specialist",
+        company: "InfraX",
+        type: "Full-Time",
+        salary: "44.57 - 69.08 USD Hourly",
+        state: "US National",
+        city: "",
+        description: "Oversee daily operations of clinical documentation specialists, collaborate with physician advisors, maintain coding standards, and participate in staff development initiatives to ensure quality and compliance in clinical documentation practices..",
+        posted: "Today",
+        link: "#",
+        remote: "100% Remote Work"
+      },
+
+
+
+       {
+        title: "Customer Care Systems Lead",
+        company: "InfraX",
+        type: "Full-Time",
+        salary: "109,000 - 153,500 USD Annually",
+        state: "Folsom, CA, Dayton, OH",
+        city: "",
+        description: "Lead software configuration management processes, implement CI/CD pipelines, collaborate with stakeholders for software releases, and ensure security best practices throughout the software development lifecycle while continuously optimizing system...",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+      {
+        title: "Reporting Analyst",
+        company: "InfraX",
+        type: "Full-Time",
+        salary: "70,450 - 76,000 USD Annually",
+        state: "Washington, DC",
+        city: "",
+        description: "Conduct training sessions on CRM and business intelligence tools, gather requirements from stakeholders, produce reports and visualizations, and manage projects related to data needs and information systems....",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+      {
+        title: "Pharmacist",
+        company: "InfraX",
+        type: "Full-Time",
+        salary: "70,450 - 76,000 USD Annually",
+        state: "Menomonee Falls, WI",
+        city: "",
+        description: "Promote safe and effective medication use through independent decision making. Collaborate with healthcare teams to address therapy issues and ensure compliance with quality improvement and regulatory standards.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+      {
+        title: "Federal Tax Manager",
+        company: "InfraX",
+        type: "Full-Time",
+        salary: "90,300 - 165,400 USD Annually",
+        state: "Philadelphia, PA",
+        city: "",
+        description: "Support client engagements by coordinating interactions, reviewing work products, and delivering services efficiently. Develop team members and address complex tax issues, while identifying new opportunities across multiple service lines.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+
+      {
+        title: "Controller",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Los Angeles, CA",
+        city: "",
+        description: "Serve as the outsourced Controller for multiple nonprofit clients, overseeing financial reporting, recommending improvements to accounting practices, and managing transactional activities to support client missions and ensure compliance.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+      {
+        title: "Certified Peer Specialist - Family Centered Treatment",
+        company: "InfraX",
+        type: "Alternative Schedule",
+        salary: "17.00 USD Hourly",
+        state: "West Allis, WI",
+        city: "",
+        description: "Provide direct peer support aligned with FCT principles, maintain accurate documentation in an Electronic Health Record system, and collaborate with teams to ensure effective treatment for families facing mental health and substance use challenges.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+      {
+        title: "Sales Associate",
+        company: "InfraX",
+        type: "Alternative Schedule",
+        salary: "7,426 - 8,699 USD Monthly",
+        state: "US National",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess customers purchase. Collaborate with teams to present results, document methodologies, and contribute to the promotion of business.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+      {
+        title: "Controller",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+       {
+        title: "Accounting Payroll Clerk",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+         {
+        title: "Administrative Assistant",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+          {
+        title: "Book keeping",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+           {
+        title: "Front Desk Clerk",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+           {
+        title: "Typist Clerk jobs",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+             {
+        title: "Project management",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+            {
+        title: "Operation manager",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+            {
+        title: "Dispatcher",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+           {
+        title: "Copy writer",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+           {
+        title: "Medical coder",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+           {
+        title: "Social media manager",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+          {
+        title: "Customer service representative",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+         {
+        title: "Sales Associate",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+        {
+        title: "Data analysis",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+       {
+        title: "Virtual Assistant",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+        {
+        title: "Data entry clerk",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+       {
+        title: "Mail and package management",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+          {
+        title: "Document pickup and delivery",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+         {
+        title: "Occasional client meetings",
+        company: "InfraX",
+        type: "Full-Time/Part-Time",
+        salary: "90,000 - 120,000 USD Annually",
+        state: "Jersey City, NJ",
+        city: "",
+        description: "Conduct quantitative analyses and statistical modeling to assess risk factors for health outcomes. Collaborate with teams to present results, document methodologies, and contribute to scientific publications and proposals.",
+        posted: "Today",
+        link: "#",
+        remote: "Hybrid Remote Work"
+      },
+
+
+    ];
+
+    const container = document.getElementById('jobList');
+
+    jobs.forEach(job => {
+      const div = document.createElement('a');
+      div.className = 'job-card d-block';
+      div.href = "formjob.html";
+      div.target = '_blank';
+
+      const location = job.city ? `${job.city}, ${job.state}` : job.state;
+
+      div.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="job-title">${job.title} <span class="new">New!</span></div>
+            <div class="d-flex flex-wrap gap-2">
+  <span class="badge rounded-pill badge-custom">${job.remote}</span>
+  <span class="badge rounded-pill badge-custom">${job.type}</span>
+  <span class="badge rounded-pill badge-custom">${job.company}</span>
+  <span class="badge rounded-pill badge-custom">${job.salary}</span>
+  <span class="badge rounded-pill badge-custom">${job.state}</span>
+</div>
+
+            <div class="job-location mt-2"><i class="bi bi-geo-alt"></i> ${location}</div>
+            <div class="job-desc mt-2">
+              ${job.description.slice(0, 180)}...
+            </div>
+          </div>
+          
+        </div>
+      `;
+
+      container.appendChild(div);
+    });
+
+
+
+
+
+
+
+const menuToggle = document.getElementById("menuToggle");
+const closeNav = document.getElementById("closeNav");
+const sideNav = document.getElementById("sideNav");
+
+menuToggle.addEventListener("click", () => {
+  sideNav.classList.add("active");
+  document.body.classList.add("nav-open");
+});
+
+closeNav.addEventListener("click", () => {
+  sideNav.classList.remove("active");
+  document.body.classList.remove("nav-open");
+});
+
+
+
+  const searchInput = document.getElementById('jobSearch');
+  const suggestionBox = document.getElementById('suggestions');
+  const suggestions = suggestionBox.getElementsByTagName('li');
+
+  // Function to show dropdown
+  function showSuggestions() {
+    suggestionBox.style.display = 'block';
+    let filter = searchInput.value.toLowerCase();
+    for (let i = 0; i < suggestions.length; i++) {
+      let text = suggestions[i].innerText.toLowerCase();
+      suggestions[i].style.display = text.includes(filter) ? '' : 'none';
+    }
+  }
+
+  // Show dropdown on focus
+  searchInput.addEventListener('focus', showSuggestions);
+
+  // Show & filter while typing
+  searchInput.addEventListener('input', showSuggestions);
+
+  // Hide dropdown when clicked outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-box')) {
+      suggestionBox.style.display = 'none';
+    }
+  });
+
+  // Set clicked suggestion into input
+  for (let i = 0; i < suggestions.length; i++) {
+    suggestions[i].addEventListener('click', function() {
+      searchInput.value = this.innerText;
+      suggestionBox.style.display = 'none';
+    });
+  }
+
+
+const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+const searchOverlay = document.getElementById("searchOverlay");
+const closeSearch = document.getElementById("closeSearch");
+// const searchInput = document.getElementById("searchInput");
+const searchList = document.getElementById("searchList");
+
+mobileSearchToggle.addEventListener("click", () => {
+  searchOverlay.classList.add("active");
+  document.body.classList.add("overflow-hidden"); // stop background scroll
+});
+
+closeSearch.addEventListener("click", () => {
+  searchOverlay.classList.remove("active");
+  document.body.classList.remove("overflow-hidden");
+});
+
+// Fill input when list item is clicked
+searchList.querySelectorAll("li").forEach(item => {
+  item.addEventListener("click", () => {
+    searchInput.value = item.textContent.trim();
+  });
+});
+
+
+
+
+
+    const toggleBtn = document.getElementById("toggleMore");
+    const extraJobs = document.querySelector(".extra-jobs");
+
+    toggleBtn.addEventListener("click", () => {
+      if (extraJobs.style.display === "none" || extraJobs.style.display === "") {
+        extraJobs.style.display = "block";
+        toggleBtn.textContent = "Show Less ▲";
+      } else {
+        extraJobs.style.display = "none";
+        toggleBtn.textContent = "38 More ›";
+      }
+    });
+
+
+
+// job list objects
+
+
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

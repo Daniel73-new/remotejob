@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Jobs - Find Online Remote Jobs</title>
+  <link rel="icon" type="image/png" href="img/remoteJobsLogo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="CSS/header.css">
+  <style>
+
+    
+/* hero style */
+
+
+
+
+
+
+
+.hero-section {
+  background: linear-gradient(rgba(21, 66, 165, 0.5) 0%, rgba(1, 108, 249, 0.5) 100%), rgb(21, 66, 165);
+    position: relative;
+    z-index: 2;
+  padding: 6rem 0; /* more padding so background is visible */
+  min-height: 70vh; /* make sure it covers at least 60% of viewport */
+  
+  /* background-image:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 2%, transparent 2%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 2%, transparent 2%),
+    linear-gradient(135deg, #0f5fe0 0%, #0062ff 100%);
+   */
+  /* background-size: 8rem 8rem, 8rem 8rem, cover;
+  background-repeat: no-repeat; */
+}
+
+.hero-section::before{
+
+    content: "";
+    background-image: url(https://www.remotejobs.io/blobimages/rji/images/semicircle.svg);
+    background-position: left top;
+    background-repeat: space;
+    position: absolute;
+    inset: 0px;
+    z-index: -1;
+    opacity: 0.1
+}
+
+.hero-bigtext{
+  font-size: 3.2em;
+}
+.get-started-btn {
+  background-color: #c8f169 !important;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  margin-top: 5em;
+  padding: 8px 60px;
+}
+
+.get-started-btn:hover {
+  background-color: #b8e160 !important;
+}
+
+.hero-img {
+  max-width: 400px;
+}
+
+@media screen and (max-width: 991px) {
+    .hero-section::before {
+        background-position: center top;
+        background-size: 11rem 10rem;
+    }
+}
+
+@media (max-width: 992px) {
+  .hero-img {
+    max-width: 300px;
+    margin-top: 1.5rem;
+  }
+}
+
+
+.big-heading{
+ font-size: 2.9em;
+ color: #000;
+}
+
+.small-heading{
+ font-size: 1.5em;
+}
+
+@media (max-width:500px) {
+  .big-heading{
+    font-size: 1.7em;
+  }
+}
+
+.guide 
+/* hiring */
+.companies-section {
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
+}
+
+.companies-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: nowrap; /* Stay in one line until breakpoint */
+  text-align: center;
+}
+.companies-wrapper span{
+  font-size: 1.5em;
+}
+
+.companies-title {
+  white-space: nowrap;
+}
+
+.company-logo {
+  max-height: 50px;
+  object-fit: contain;
+  filter: grayscale(10%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.company-logo:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Collapse at 800px */
+@media (max-width: 800px) {
+  .companies-wrapper {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .company-logo {
+    max-height: 35px;
+  }
+}
+
+@media (max-width){
+  .companies-wrapper img{
+    height: 5%;
+    width: 20px;
+  }
+}
+
+/* guide */
+
+.feature-card {
+    text-align: left;
+  }
+  .feature-card img {
+    display: block;
+    margin-bottom: 15px; /* center the image only */
+    max-width: 100%;
+    height: auto;
+  }
+  .feature-card h5 {
+    font-weight: 700;
+    color: #1d4ed8;
+  }
+  .btn-get-started {
+    background-color: #ccff99;
+    border: none;
+    font-weight: 600;
+    padding: 10px 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+  }
+  .btn-get-started:hover {
+    background-color: #b3ff66;
+  }
+
+
+
+
+.feature-box {
+  background-color: #fdf9f1;
+  border-radius: 15px;
+}
+
+.icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: black;
+}
+
+.bg-success-subtle {
+  background-color: #d4f5e0 !important;
+}
+
+.bg-danger-subtle {
+  background-color: #fdd6e4 !important;
+}
+
+.bg-warning-subtle {
+  background-color: #fde6d4 !important;
+}
+
+.feature-box h5, .feature-box p {
+  text-align: center;
+}
+
+
+/* trust section */
+.trust-section {
+  padding: 60px 20px;
+}
+
+.trust-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  padding: 40px;
+}
+
+.trust-box h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.trust-box p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.btn-custom {
+  background-color: #ccff88;
+  color: #000;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-custom:hover {
+  background-color: #b3f067;
+}
+
+.news-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.news-logo {
+  max-height: 25px;
+  max-width: 90px;
+  object-fit: contain;
+}
+
+.news-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@media (max-width: 992px) {
+  .trust-box {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .trust-box h2 {
+    font-size: 1.6rem;
+  }
+  .btn-custom {
+    padding: 10px 24px;
+  }
+  .news-text {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+/* search job section */
+
+  
+
+/* categories section */
+  .category-btn {
+  border-radius: 50px;
+  padding: 10px 18px;
+  font-weight: 500;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.border-pink {
+  border-color: #f39ac7 !important;
+}
+
+@media (max-width: 576px) {
+  .category-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+
+/* CTA Section Styling */
+.cta-section {
+  background: linear-gradient(rgba(21, 66, 165, 0.5) 0%, rgba(1, 108, 249, 0.5) 100%), rgb(21, 66, 165);
+    position: relative;
+    z-index: 2;
+}
+
+/* Light arc pattern */
+.cta-section::before {
+  content: "";
+  background-image: url(https://www.remotejobs.io/blobimages/rji/images/semicircle.svg);
+    background-position: left top;
+    background-repeat: space;
+    position: absolute;
+    inset: 0px;
+    z-index: -1;
+    opacity: 0.1;
+  width: 100%;
+  height: 100%;
+  /* background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 20%, transparent 21%);
+  background-size: 150px 150px;
+  opacity: 0.2;
+  pointer-events: none; */
+}
+
+/* Icon circle */
+.icon-circle {
+  background-color: #b6f1c7;
+  color: #000;
+  padding: 15px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button styling */
+.btn-cta {
+  background-color: #a6f32d;
+  border-radius: 50px;
+  color: #000;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+  background-color: #8ed625;
+  color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body> <!-- increased padding to match taller header -->
+
+<header class="border-bottom fixed-top bg-white shadow-sm custom-header">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <!-- Mobile Layout -->
+    <div class="d-flex align-items-center gap-2 d-md-none flex-grow-1">
+      <!-- Mobile Nav Toggle -->
+      <button class="btn" id="menuToggle">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+
+      <!-- Logo -->
+      <img src="img/remoteJobsLogo.svg" 
+           alt="RemoteJobs Logo" style="height:25px;">
+
+      <!-- Mobile Search Icon -->
+      <button class="btn search-btn ms-auto" id="mobileSearchToggle" type="button">
+        <i class="bi bi-search fs-5"></i>
+      </button>
+    </div>
+
+    <!-- Desktop Layout -->
+    <div class="d-none d-md-flex align-items-center justify-content-between flex-grow-1">
+      <!-- Logo -->
+      <div class="d-flex align-items-center">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" 
+             alt="RemoteJobs Logo" class="me-2" style="height:25px;">
+      </div>
+
+      <!-- Desktop Search Bar -->
+      <form class="d-flex search-bar my-2 my-md-0" role="search">
+        <input class="form-control me-2" type="search" 
+               placeholder="Enter keyword or title to find remote jobs" aria-label="Search">
+        <button class="btn search-btn" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+
+      <!-- Desktop Navigation -->
+      <div class="d-flex align-items-center gap-4">
+        <a href="remote.html" class="fw-semibold text-dark text-decoration-none">Find Remote Jobs</a>
+        <a href="contact.html" class="fw-semibold text-dark text-decoration-none">Contact</a>
+        <a href="formjob.html" class="btn btn-primary rounded-pill px-4">APPLY</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Search Overlay (Mobile Only) -->
+<div id="searchOverlay" class="search-overlay">
+  <div class="overlay-header d-flex align-items-center p-3">
+    <div class="input-group flex-grow-1">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="form-control" placeholder="Enter keyword or title" id="searchInput">
+    </div>
+    <button class="btn btn-link text-secondary ms-2 text-decoration-none" id="closeSearch">Cancel</button>
+  </div>
+
+  <div class="overlay-body p-3 flex-grow-1">
+    <ul class="list-unstyled" id="searchList">
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none"><strong>Dispatcher</strong></a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Housing inspection</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Book Keeping</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Copy writer</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Social Media Manager</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Accounting Payroll Clerk</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Customer service representative</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Data entry clerk</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Document pickup and delivery</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer (Pinned to Bottom) -->
+  <div class="overlay-footer text-center p-3">
+    <a href="#" class="btn w-100 rounded-pill" style="background:#eee;">Search Jobs</a>
+  </div>
+</div>
+
+
+<!-- Side Navigation -->
+<nav id="sideNav" class="side-nav">
+  <button class="close-btn" id="closeNav">&times;</button>
+  <a href="remote.html">Find Remote Jobs</a>
+  <a href="contact.html">Contact</a>
+  <a href="formjob.html">APPLY</a>
+</nav>
+
+
+<!-- Hero Section -->
+<section class="hero-section text-white d-flex align-items-center">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- Left Content -->
+      <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+        <h1 class="fw-bold display-5 hero-bigtext">Discover Your Dream Remote Job</h1>
+        <p class="mt-3 fs-5">Every listing checked by experts.<br>No scams, just real remote jobs curated for you.</p>
+        <a href="remote.html" class="btn btn-light text-dark rounded-pill get-started-btn">Find your remote job</a>
+      </div>
+
+      <!-- Right Content -->
+      <div class="col-lg-6 text-center">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/remote-jobs-banner-new1-exp.png" alt="Hero Image" class="img-fluid hero-img">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- hiring company -->
+<section class="companies-section py-5">
+  <div class="container">
+    <div class="companies-wrapper">
+      <span class="companies-title">Top Companies Hiring Remotely*</span>
+      <img src= "img/yeti.avif" class="company-logo" alt="Yeti">
+      <img src= "img/google.avif" class="company-logo" alt="Google">
+      <img src= "img/amazon.avif" class="company-logo" alt="Amazon">
+      <img src= "img/doordash.avif" class="company-logo" alt="DoorDash">
+      <img src= "img/zillow.avif" class="company-logo" alt="Zillow">
+    </div>
+  </div>
+</section>
+
+
+
+<!-- guide -->
+
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5 big-heading">The Fastest Way to Find Real Remote Jobs</h2>
+    <div class="row g-4">
+      <!-- Card 1 -->
+      <div class="col-md-4 feature-card">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/step-1.svg" alt="Effortless Search" class="mb-3">
+        <h5 class="small-heading">Effortless Search</h5>
+        <p>Select remote jobs from our professionally curated categories.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-md-4 feature-card">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/step-2.svg" alt="Only the Good Stuff" class="mb-3">
+        <h5 class="small-heading">Only the Good Stuff</h5>
+        <p>We’ve filtered out hundreds of thousands of irrelevant jobs to deliver what you want.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-md-4 feature-card">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/step-3.svg" alt="Stay Ahead of the Game" class="mb-3">
+        <h5 class="small-heading">Stay Ahead of the Game</h5>
+        <p>We recommend the best jobs for you based on your unique preferences.</p>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <a href="#" class="btn btn-light text-dark rounded-pill get-started-btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5 big-heading">Rest Easy with RemoteJobs.io</h2>
+
+    <div class="row g-4">
+      <!-- Card 1 -->
+      <div class="col-md-6">
+        <div class="feature-box p-4 h-100">
+          <div class="icon-circle bg-success-subtle mb-3 mx-auto">
+            <i class="bi bi-hand-thumbs-up"></i>
+          </div>
+          <h5 class="fw-bold text-black small-heading">Real remote job listings</h5>
+          <p class="mb-0 text-black">
+            Experts verify every listing. No scams or junk — only the highest quality remote roles in the U.S. and abroad. Get alerts when new ones pop up.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-6">
+        <div class="feature-box p-4 h-100">
+          <div class="icon-circle bg-danger-subtle mb-3 mx-auto">
+            <i class="bi bi-diagram-3"></i>
+          </div>
+          <h5 class="fw-bold text-black small-heading">Personalized results</h5>
+          <p class="mb-0 text-black">
+            Targeting fully remote or hybrid? Near you or anywhere in the world? Find exactly what you want with our user-friendly filters tailored for remote job seekers.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-6">
+        <div class="feature-box p-4 h-100">
+          <div class="icon-circle bg-warning-subtle mb-3 mx-auto">
+            <i class="bi bi-calendar-check"></i>
+          </div>
+          <h5 class="fw-bold text-black small-heading">Don’t waste your time</h5>
+          <p class="mb-0 text-black">
+            Save your favs. Apply quickly — no more hopping between job boards. Spend more time browsing for roles at remote-friendly companies.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-6">
+        <div class="feature-box p-4 h-100">
+          <div class="icon-circle bg-success-subtle mb-3 mx-auto">
+            <i class="bi bi-chat-dots"></i>
+          </div>
+          <h5 class="fw-bold text-black small-heading">Fast & easy to browse</h5>
+          <p class="mb-0 text-black">
+            Clean, easy-to-navigate listings with insights into compensation and benefits make browsing more informative and engaging.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="mt-5">
+      <a href="#" class="btn btn-light rounded-pill fw-bold get-started-btn">Get Started</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- trust section -->
+<section class="trust-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left Content -->
+      <div class="col-lg-5">
+        <div class="trust-box text-center text-lg-start">
+          <h2 class="big-heading">Listings You Can Trust</h2>
+          <p>
+            Our team works tirelessly to remove all the junk so only 
+            genuine remote roles make the cut. Every job posting is vetted 
+            for authenticity and security before it gets listed.
+          </p>
+           <a href="#" class="btn btn-light text-dark rounded-pill get-started-btn">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Right News Cards -->
+      <div class="col-lg-7 mt-4 mt-lg-0">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="news-card border-start border-4 border-success">
+              <img src="https://www.remotejobs.io/blobimages/rji/images/cnn.png" alt="CNN Logo" class="news-logo">
+              <span class="news-text">Jobs scams are on the rise</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="news-card border-start border-4 border-pink">
+              <img src="https://www.remotejobs.io/blobimages/rji/images/washington.png" alt="Washington Post Logo" class="news-logo">
+              <span class="news-text">Fake job postings are stealing applicants’ money and identities</span>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="news-card border-start border-4 border-warning">
+              <img src="https://www.remotejobs.io/blobimages/rji/images/losangeles.png" alt="Los Angeles Times Logo" class="news-logo">
+              <span class="news-text">Fake job scams are skyrocketing online — and they’re getting harder to detect</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="news-card border-start border-4 border-primary">
+              <img src="https://www.remotejobs.io/blobimages/rji/images/fastcompany.svg" alt="Fast Company Logo" class="news-logo">
+              <span class="news-text">That new job offer may be a scam</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="news-card border-start border-4 border-success">
+              <img src="https://www.remotejobs.io/blobimages/rji/images/cnet.png" alt="CNET Logo" class="news-logo">
+              <span class="news-text">Scammers Targeting Job Seekers as Layoffs Mount</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-4 big-heading">Search For Your Next Remote Job</h2>
+
+    <!-- Search Bar -->
+    <div class="search-box mb-3">
+      <div class="input-group">
+        <input type="text" id="jobSearch" class="form-control search-input" placeholder="Enter keyword or title to find remote jobs">
+        <button class="btn search-btn"><i class="fas fa-search"></i></button>
+      </div>
+
+      <!-- Dropdown Suggestions -->
+      <ul class="list-unstyled suggestion-list" id="suggestions">
+        <li>Data Entry</li>
+        <li>Housing inspection</li>
+        <li>Dispatcher</li>
+        <li>Bookkeeping</li>
+        <li>Accounting Payroll Clerk</li>
+        <li>Front Desk Clark</li>
+        <li>Typist Clerk Job</li>
+        <li>Customer Service Representative</li>
+      </ul>
+    </div>
+
+    <!-- Tag Links -->
+    <div>
+      <a href="formjob.html" class="btn tag-btn">Work Anywhere</a>
+      <a href="formjob.html" class="btn tag-btn">Work Anywhere, US</a>
+      <a href="formjob.html" class="btn tag-btn">Customize Your Search</a>
+      <a href="formjob.html" class="btn tag-btn">Job Categories</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Explore Categories Section -->
+<section class="py-5">
+  <div class="container text-center p-4 rounded" style="background-color: #eaf3ff;">
+    <h2 class="fw-bold mb-4 big-heading">Explore Remote Job Categories</h2>
+    
+    <!-- Category Buttons -->
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <a href="formjob.html" class="btn category-btn border border-success text-dark">
+        <i class="bi bi-headset me-2"></i> Customer Service <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+      <a href="formjob.html" class="btn category-btn border border-danger text-dark">
+        <i class="bi bi-laptop me-2"></i> Dispatcher<i class="bi bi-chevron-right ms-2"></i>
+      </a>
+      <a href="formjob.html" class="btn category-btn border border-primary text-dark">
+        <i class="bi bi-house-door me-2"></i> Housing inspection <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+      <a href="formjob.html" class="btn category-btn border border-pink text-dark">
+        <i class="bi bi-receipt me-2"></i> Document Pickup and Delivery <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+      <a href="formjob.html" class="btn category-btn border border-success text-dark">
+        <i class="bi bi-keyboard me-2"></i> Data Entry <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+
+    <!-- See All Link -->
+    <div class="mt-3">
+      <a href="joblist.html" class="text-primary fw-semibold">See All</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="cta-section text-center text-white py-5">
+  <div class="container">
+    <!-- Icon -->
+    <div class="mb-3">
+      <span class="icon-circle">
+        <i class="bi bi-trophy fs-2"></i>
+      </span>
+    </div>
+
+    <!-- Heading -->
+    <h2 class="fw-bold mb-3">
+      <span class="text-success">Millions</span> of professionals are <br />
+      already enjoying a remote job.
+    </h2>
+
+    <!-- Sub text -->
+    <p class="lead mb-4">Be the next one.</p>
+
+    <!-- CTA Button -->
+    <a href="formjob.html" class="btn btn-cta px-4 py-2 fw-semibold">
+      Find Your Next Remote Job
+    </a>
+
+   
+  </div>
+</section>
+
+
+<!-- footer -->
+
+<footer class="footer bg-light py-5">
+  <div class="container">
+    <!-- Top Row: Logo + Social -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+      <a href="#" class="footer-logo mb-3 mb-md-0">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" alt="RemoteJobs.io Logo" height="40">
+      </a>
+
+      <div class="footer-social">
+        <a href="#" class="me-3 text-dark"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-dark"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Middle Row: Links -->
+    <div class="row mt-4">
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">About RemoteJobs.io</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-dark">Find Remote Jobs</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">How RemoteJobs.io Works</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Policies</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-dark">Privacy Policy</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">Terms of Use</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">CCPA/GDPR</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Customer Support</h6>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-telephone me-2"></i> 1-800-510-8550</li>
+          <li><i class="bi bi-calendar-event me-2"></i> Mon-Fri 9 AM - 6 PM CST</li>
+          <li><i class="bi bi-envelope me-2"></i> support@remotejobs.io</li>
+          <li class="mt-2"><a href="#" class="text-decoration-none text-dark">Contact Us</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">Job Search Vigilance</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Bottom Row -->
+    <div class="text-center small text-muted">
+      © 2025, Sonaga Tech Limited, Hamilton, Zweigniederlassung Luzern
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+
+const menuToggle = document.getElementById("menuToggle");
+const closeNav = document.getElementById("closeNav");
+const sideNav = document.getElementById("sideNav");
+
+menuToggle.addEventListener("click", () => {
+  sideNav.classList.add("active");
+  document.body.classList.add("nav-open");
+});
+
+closeNav.addEventListener("click", () => {
+  sideNav.classList.remove("active");
+  document.body.classList.remove("nav-open");
+});
+
+
+
+  const searchInput = document.getElementById('jobSearch');
+  const suggestionBox = document.getElementById('suggestions');
+  const suggestions = suggestionBox.getElementsByTagName('li');
+
+  // Function to show dropdown
+  function showSuggestions() {
+    suggestionBox.style.display = 'block';
+    let filter = searchInput.value.toLowerCase();
+    for (let i = 0; i < suggestions.length; i++) {
+      let text = suggestions[i].innerText.toLowerCase();
+      suggestions[i].style.display = text.includes(filter) ? '' : 'none';
+    }
+  }
+
+  // Show dropdown on focus
+  searchInput.addEventListener('focus', showSuggestions);
+
+  // Show & filter while typing
+  searchInput.addEventListener('input', showSuggestions);
+
+  // Hide dropdown when clicked outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-box')) {
+      suggestionBox.style.display = 'none';
+    }
+  });
+
+  // Set clicked suggestion into input
+  for (let i = 0; i < suggestions.length; i++) {
+    suggestions[i].addEventListener('click', function() {
+      searchInput.value = this.innerText;
+      suggestionBox.style.display = 'none';
+    });
+  }
+
+
+const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+const searchOverlay = document.getElementById("searchOverlay");
+const closeSearch = document.getElementById("closeSearch");
+// const searchInput = document.getElementById("searchInput");
+const searchList = document.getElementById("searchList");
+
+mobileSearchToggle.addEventListener("click", () => {
+  searchOverlay.classList.add("active");
+  document.body.classList.add("overflow-hidden"); // stop background scroll
+});
+
+closeSearch.addEventListener("click", () => {
+  searchOverlay.classList.remove("active");
+  document.body.classList.remove("overflow-hidden");
+});
+
+// Fill input when list item is clicked
+searchList.querySelectorAll("li").forEach(item => {
+  item.addEventListener("click", () => {
+    searchInput.value = item.textContent.trim();
+  });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

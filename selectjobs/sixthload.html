@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Jobs - Find Online Remote Jobs</title>
+  <link rel="icon" type="image/png" href="img/remoteJobsLogo.svg">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+  <style>
+
+    
+    body, html {
+      height: 100%;
+      margin: 0;
+       font-family: "Mulish", sans-serif;
+  font-style: normal;
+      
+    }
+
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    
+    header {
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    header img {
+      height: 25px;
+    }
+
+    /* Progress bar */
+    .header-bar {
+      height: 4px;
+      background: linear-gradient(to right, #0066ff 70%, #ddd 30%);
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .form-box {
+      max-width: 400px;
+      width: 100%;
+      margin: 20px auto;
+    }
+
+    .location-input {
+      border: 2px solid #0066ff;
+      border-radius: 6px;
+      padding-left: 35px;
+      position: relative;
+    }
+
+    .location-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #333;
+    }
+
+    .checkbox-list {
+      text-align: left;
+      margin-top: 15px;
+    }
+
+    .skip-link {
+      margin-top: 20px;
+      display: block;
+      color: #0066ff;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #ddd;
+      background: #fff;
+      padding: 15px 0;
+      margin-top: auto;
+    }
+    .btn-outline-dark {
+      border-radius: 25px;
+      padding: 10px 50px;
+    }
+    .btn-success {
+      border-radius: 25px;
+      padding: 10px 45px;
+      background: #9cd86d;
+      color: #000;
+      border: none;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    
+    <!-- Header -->
+    <header class="border-bottom py-3">
+    <div class="container d-flex align-items-center">
+      <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" alt="logo" style="height:25px; margin-right:8px;">
+      <!-- <a href="#" class="logo text-decoration-none">remotejobs.io</a> -->
+    </div>
+  </header>
+    <div class="header-bar"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="alert alert-success text-center w-100" style="max-width:600px; font-size:14px;">
+        More good news, we have opportunities available at your location.
+      </div>
+
+      <h3 class="mt-4"><strong>Where do you want to work from?</strong></h3>
+      <p>It’s important to add a location because some companies target specific areas, but you’ll always work remotely.</p>
+
+      <div class="form-box">
+        <div class="position-relative">
+          <span class="location-icon">📍</span>
+          <input type="text" class="form-control location-input" placeholder="United State" value="United State">
+        </div>
+
+        <div class="checkbox-list mt-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="usOption" checked>
+            <label class="form-check-label" for="usOption">
+              Include jobs where I can work from anywhere in US
+            </label>
+          </div>
+          <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" id="worldOption" checked>
+            <label class="form-check-label" for="worldOption">
+              Include jobs where I can work from anywhere in the world
+            </label>
+          </div>
+        </div>
+
+        <a href="seventhload.html"  class="skip-link fw-bold" style="text-decoration: none;">Skip for now</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="fifthload.html" class="btn btn-outline-dark">Back</a>
+     <p class="mb-0 small text-muted d-none d-md-block">
+      We'll match you with remote jobs perfect for you!
+    </p>
+      <a href="seventhload.html" class="btn btn-success">Next</a>
+    </div>
+  </footer>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelector('.btn-next').addEventListener('click', function() {
+      alert("Next button clicked!");
+    });
+
+    document.querySelector('.btn-back').addEventListener('click', function() {
+      alert("Back button clicked!");
+    });
+
+    document.querySelector('.skip-link').addEventListener('click', function() {
+      alert("Skipped for now.");
+    });
+  </script>
+</body>
+</html>

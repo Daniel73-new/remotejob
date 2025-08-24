@@ -1,0 +1,219 @@
+body{
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+  padding-top: 80px;
+}
+
+
+.custom-header {
+  padding-top: 2rem;
+  padding-bottom: 2em;
+  z-index: 1030; /* stays above all content */
+}
+
+/* Search bar size */
+.search-bar {
+  max-width: 400px;
+}
+
+/* Search button */
+.search-btn {
+  background-color: #c8f169; /* Light green background */
+  border: none;
+}
+.search-btn i {
+  color: black;
+  font-size: 1.2rem;
+}
+.search-btn:hover {
+  background-color: #b8e160;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-box {
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+  }
+  .search-input {
+    border-radius: 8px 0 0 8px;
+    height: 55px;
+    font-size: 1.1rem;
+  }
+  .search-btn {
+    border-radius: 0 8px 8px 0;
+    background-color: #d4ff7a;
+    border: none;
+    padding: 0 20px;
+    font-size: 1.2rem;
+  }
+  .suggestion-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 10;
+  text-align: left; /* ✅ force text alignment to start */
+}
+.suggestion-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+  .suggestion-list li:hover {
+    background-color: #f1f1f1;
+  }
+
+
+
+
+
+.custom-header {
+  height: 100px;
+  z-index: 2000;
+}
+
+/* Fullscreen search overlay */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 3000;
+  display: none;
+  flex-direction: column;
+}
+
+/* Show when active */
+.search-overlay.active {
+  display: flex;
+}
+
+/* Input style */
+.overlay-header .form-control {
+  border-left: none;
+  box-shadow: none;
+}
+.overlay-header .input-group-text {
+  background: #fff;
+  border-right: none;
+}
+
+/* List links */
+.search-overlay ul li a {
+  font-size: 1rem;
+  cursor: pointer;
+}
+.search-overlay ul li a:hover {
+  background: #f5f5f5;
+  border-radius: 6px;
+}
+
+/* Footer pinned to bottom */
+.search-overlay {
+  display: none;
+}
+.search-overlay.active {
+  display: flex;
+}
+.search-overlay .overlay-body {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.search-overlay .overlay-footer {
+  border-top: 1px solid #ddd;
+}
+
+.tag-btn {
+    border-radius: 50px;
+    background-color: #709dcf;
+    font-weight: 500;
+    margin: 5px;
+    text-decoration: none;
+  }
+
+
+
+/* Side Nav */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -50%; /* hidden by default */
+  width: 50%;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 2000;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Side nav links */
+.side-nav a {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Close button */
+.side-nav .close-btn {
+  font-size: 2rem;
+  border: none;
+  background: none;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+/* Active State */
+.side-nav.active {
+  left: 0;
+}
+
+/* Prevent body scroll when nav is open */
+body.nav-open {
+  overflow: hidden;
+}
+
+
+
+/* footer */
+.footer {
+  background-color: #fdfcf8; /* matches screenshot */
+}
+
+.footer-logo img {
+  max-height: 40px;
+}
+
+.footer-social a {
+  font-size: 1.2rem;
+  transition: color 0.2s ease-in-out;
+}
+.footer-social a:hover {
+  color: #0d6efd; /* Bootstrap blue */
+}
+

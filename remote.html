@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Jobs - Find Online Remote Jobs</title>
+  <link rel="icon" type="image/png" href="img/remoteJobsLogo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="CSS/header.css">
+
+
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Mulish", sans-serif;
+      background: #f9f9f9;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(21, 66, 165, 0.7), rgba(1, 108, 249, 0.7)), rgb(21, 66, 165);
+      z-index: 2;
+      position: relative;
+      color: #fff;
+      text-align: center;
+      padding: 6rem 0 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .hero p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    .remotesearch-bar {
+      max-width: 700px;
+      margin: 30px auto;
+      display: flex;
+      border-radius: 50px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+
+    .remotesearch-bar input {
+      border: none;
+      flex: 1;
+      padding: 15px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .remotesearch-bar button {
+      background: #a7e547;
+      border: none;
+      padding: 0 30px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    /* Hero Image */
+    .hero-img img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Popular Job Searches */
+    .job-searches {
+      margin-top: 3rem;
+    }
+
+    .job-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, border 0.3s;
+      height: 100%;
+    }
+
+    .job-card:hover {
+      transform: translateY(-5px);
+      border: 3px solid #0b66d4;
+    }
+
+    .job-card img {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+
+    .job-card p {
+      font-size: 1rem;
+      margin: 0;
+      color: #333;
+    }
+
+    /* Footer */
+   
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+    }
+
+
+
+/* job categories section */
+
+.categories-section {
+      background-color: #eaf4ff;
+      border-radius: 12px;
+      padding: 50px 20px;
+    }
+
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 16px;
+      margin: 8px;
+      background: #fff;
+      transition: 0.3s ease-in-out;
+    }
+
+    .category-badge i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .category-badge:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Different border colors */
+    .customer-service { border: 2px solid #a6d7a9; background: #f8fff9; }
+    .developer { border: 2px solid #f0a598; background: #fff6f5; }
+    .virtual-assistant { border: 2px solid #9cbff9; background: #f5f9ff; }
+    .accounting { border: 2px solid #f3a8c7; background: #fff7fb; }
+    .data-entry { border: 2px solid #a6d7a9; background: #f8fff9; }
+
+    .job-links {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .job-links a {
+      text-decoration: none;
+      color: #000;
+      margin: 10px 15px;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+
+    .job-links a:hover {
+      color: #0d6efd;
+    }
+
+    .more-link {
+      display: inline-block;
+      margin-top: 15px;
+      font-weight: 500;
+      color: #0d6efd;
+      text-decoration: none;
+      border: 1px dashed #0d6efd;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .more-link:hover {
+      background: #0d6efd;
+      color: #fff;
+    }
+
+    /* Hidden extra jobs */
+    .extra-jobs {
+      display: none;
+      margin-top: 20px;
+    }
+
+
+  </style>
+</head>
+<body>
+
+
+  <header class="border-bottom fixed-top bg-white shadow-sm custom-header">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <!-- Mobile Layout -->
+    <div class="d-flex align-items-center gap-2 d-md-none flex-grow-1">
+      <!-- Mobile Nav Toggle -->
+      <button class="btn" id="menuToggle">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+
+      <!-- Logo -->
+      <img src="img/remoteJobsLogo.svg" 
+           alt="RemoteJobs Logo" style="height:25px;">
+
+      <!-- Mobile Search Icon -->
+      <button class="btn search-btn ms-auto" id="mobileSearchToggle" type="button">
+        <i class="bi bi-search fs-5"></i>
+      </button>
+    </div>
+
+    <!-- Desktop Layout -->
+    <div class="d-none d-md-flex align-items-center justify-content-between flex-grow-1">
+      <!-- Logo -->
+      <div class="d-flex align-items-center">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" 
+             alt="RemoteJobs Logo" class="me-2" style="height:25px;">
+      </div>
+
+      <!-- Desktop Search Bar -->
+      <form class="d-flex search-bar my-2 my-md-0" role="search">
+        <input class="form-control me-2" type="search" 
+               placeholder="Enter keyword or title to find remote jobs" aria-label="Search">
+        <button class="btn search-btn" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+
+      <!-- Desktop Navigation -->
+      <div class="d-flex align-items-center gap-4">
+        <a href="remote.html" class="fw-semibold text-dark text-decoration-none">Find Remote Jobs</a>
+        <a href="contact.html" class="fw-semibold text-dark text-decoration-none">Contact</a>
+        <a href="formjob.html" class="btn btn-primary rounded-pill px-4">APPLY</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Search Overlay (Mobile Only) -->
+<div id="searchOverlay" class="search-overlay">
+  <div class="overlay-header d-flex align-items-center p-3">
+    <div class="input-group flex-grow-1">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="form-control" placeholder="Enter keyword or title" id="searchInput">
+    </div>
+    <button class="btn btn-link text-secondary ms-2 text-decoration-none" id="closeSearch">Cancel</button>
+  </div>
+
+  <div class="overlay-body p-3 flex-grow-1">
+    <ul class="list-unstyled" id="searchList">
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none"><strong>Dispatcher</strong></a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Housing inspection</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Book Keeping</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Copy writer</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Social Media Manager</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Accounting Payroll Clerk</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Customer service representative</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Data entry clerk</a></li>
+      <li><a href="formjob.html" class="d-block py-2 text-dark text-decoration-none">Document pickup and delivery</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer (Pinned to Bottom) -->
+  <div class="overlay-footer text-center p-3">
+    <a href="#" class="btn w-100 rounded-pill" style="background:#eee;">Search Jobs</a>
+  </div>
+</div>
+
+
+<!-- Side Navigation -->
+<nav id="sideNav" class="side-nav">
+  <button class="close-btn" id="closeNav">&times;</button>
+  <a href="remote.html">Find Remote Jobs</a>
+  <a href="contact.html">Contact</a>
+  <a href="formjob.html">APPLY</a>
+</nav>
+
+
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        
+        <!-- Text Side -->
+        <div class="col-md-6 text-md-start text-center mb-4 mb-md-0">
+          <h1>Discover Work From Home Jobs</h1>
+          <p>Over 93,900 remote and hybrid jobs from 11,000 companies</p>
+
+          <div class="remotesearch-bar">
+            <input type="text" placeholder="Enter keyword or title to find remote jobs">
+            <button> <a href="joblist.html"> Search → </a></button>
+          </div>
+        </div>
+
+        <!-- Image Side -->
+        <div class="col-md-6 hero-img text-center">
+          <img src="https://www.remotejobs.io/blobimages/rji/images/category-banner-desktop.png" alt="Work from Home">
+        </div>
+      </div>
+
+      <!-- Popular Job Searches inside hero -->
+      <div class="job-searches">
+        <h3 class="text-center text-light mb-4">Popular Job Searches</h3>
+        <div class="row g-4">
+          <div class="col-6 col-md-3">
+            <div class="job-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="">
+              <p>Work Anywhere</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="job-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="">
+              <p>Work Anywhere, US</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="job-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="">
+              <p>Part-Time</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="job-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="">
+              <p>$100k+</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+
+
+  <!-- job categories -->
+
+  <section class="categories-section container text-center" style="margin-top: 5em;">
+    <h2 class="fw-bold mb-4">Explore Remote Job Categories</h2>
+
+    <!-- Top Categories -->
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="category-badge customer-service">
+        <i class="bi bi-headset"></i> Customer Service <i class="bi bi-chevron-right ms-2"></i>
+      </div>
+      <div class="category-badge developer">
+        <i class="bi bi-laptop"></i> Developer <i class="bi bi-chevron-right ms-2"></i>
+      </div>
+      <div class="category-badge virtual-assistant">
+        <i class="bi bi-house-door"></i> Virtual Assistant <i class="bi bi-chevron-right ms-2"></i>
+      </div>
+      <div class="category-badge accounting">
+        <i class="bi bi-receipt"></i> Accounting <i class="bi bi-chevron-right ms-2"></i>
+      </div>
+      <div class="category-badge data-entry">
+        <i class="bi bi-keyboard"></i> Data Entry <i class="bi bi-chevron-right ms-2"></i>
+      </div>
+    </div>
+
+    <!-- Other Job Links -->
+    <div class="job-links">
+      <a href="#">Administrative Assistant</a>
+      <a href="#">Analyst</a>
+      <a href="#">Bookkeeping</a>
+      <a href="#">Call Center</a>
+      <a href="#">Chat Support</a>
+      <a href="#">Communications</a>
+      <a href="#">Compliance</a>
+      <a href="#">Consulting</a>
+      <a href="#">Copywriting</a>
+      <a href="#">Creative</a>
+      <a href="#">Criminal Justice</a>
+      <a href="#">Cybersecurity</a>
+      <a href="#">Data Analyst</a>
+      <a href="#">Data Science</a>
+      <a href="#">Design</a>
+      <a href="#">Editing</a>
+    </div>
+
+    <!-- Hidden Extra Jobs -->
+    <div class="extra-jobs">
+      <div class="job-links">
+        <a href="#">E-commerce</a>
+        <a href="#">Finance</a>
+        <a href="#">Healthcare</a>
+        <a href="#">Human Resources</a>
+        <a href="#">IT Support</a>
+        <a href="#">Legal</a>
+        <a href="#">Marketing</a>
+        <a href="#">Project Management</a>
+        <a href="#">Recruiting</a>
+        <a href="#">Sales</a>
+        <a href="#">Social Media</a>
+        <a href="#">Software Testing</a>
+        <a href="#">Teaching</a>
+        <a href="#">Technical Writing</a>
+        <a href="#">Transcription</a>
+        <a href="#">Translation</a>
+        <!-- ... add up to 38 more -->
+      </div>
+    </div>
+
+    <!-- Toggle Link -->
+    <a class="more-link" id="toggleMore">38 More ›</a>
+  </section>
+
+
+
+  <section class="py-5 text-center" style="margin-top: 5em;">
+  <div class="container">
+    <h2 class="fw-bold mb-4 big-heading">Search For Your Next Remote Job</h2>
+
+    <!-- Search Bar -->
+    <div class="search-box mb-3">
+      <div class="input-group">
+        <input type="text" id="jobSearch" class="form-control search-input" placeholder="Enter keyword or title to find remote jobs">
+        <button class="btn search-btn"><i class="fas fa-search"></i></button>
+      </div>
+
+      <!-- Dropdown Suggestions -->
+      <ul class="list-unstyled suggestion-list" id="suggestions">
+        <li>Data Entry</li>
+        <li>Customer Service</li>
+        <li>Virtual Assistant</li>
+        <li>Software Developer</li>
+        <li>Project Manager</li>
+        <li>Graphic Designer</li>
+        <li>Marketing Specialist</li>
+        <li>Content Writer</li>
+      </ul>
+    </div>
+
+    <!-- Tag Links -->
+    <div>
+      <a href="formjob.html" class="btn tag-btn">Work Anywhere</a>
+      <a href="formjob.html" class="btn tag-btn">Work Anywhere, US</a>
+      <a href="formjob.html" class="btn tag-btn">Customize Your Search</a>
+      <a href="formjob.html" class="btn tag-btn">Job Categories</a>
+    </div>
+  </div>
+</section>
+
+   
+
+
+<section class="py-5 bg-light"style="margin-top:7em">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Top Companies Hiring Remotely*</h2>
+
+    <!-- Carousel visible on mobile -->
+    <div id="companyCarousel" class="carousel slide d-md-none" data-bs-ride="carousel" data-bs-interval="2000">
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center">
+            <img src="img/yeti.avif" class="mx-2" style="max-height:30px;" alt="YETI">
+            <img src="img/google.avif" class="mx-2" style="max-height:30px;" alt="Google">
+            <img src="img/amazon.avif" class="mx-2" style="max-height:30px;" alt="Amazon">
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <img src="img/doordash.avif" class="mx-2" style="max-height:30px;" alt="DoorDash">
+            <img src="img/zillow.avif"class="mx-2"style="max-height:30px;" alt="Zillow">
+            <img src="img/google.avif" class="mx-2" style="max-height:30px;" alt="Google">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid visible on desktop -->
+    <div class="row justify-content-center align-items-center g-4 d-none d-md-flex">
+      <div class="col-2"><img src="img/yeti.avif" class="img-fluid" style="max-height:50px;" alt="YETI"></div>
+      <div class="col-2"><img src="img/google.avif" class="img-fluid" style="max-height:50px;" alt="Google"></div>
+      <div class="col-2"><img src="img/amazon.avif" class="img-fluid" style="max-height:50px;" alt="Amazon"></div>
+      <div class="col-2"><img src="img/doordash.avif" class="img-fluid" style="max-height:50px;" alt="DoorDash"></div>
+      <div class="col-2"><img src="img/zillow.avif" class="img-fluid" style="max-height:50px;" alt="Zillow"></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="py-5" style="margin-top: 7em;">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Trending Jobs</h2>
+    <div id="jobsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">New</span>
+                  <h5 class="card-title">Lead Cyber Engineer</h5>
+                  <p class="card-text text-muted">$158,551 - $177,190 USD Annually</p>
+                  <span class="badge bg-info">Health Insurance</span>
+                  <span class="badge bg-primary">Full-Time</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> US National</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">New</span>
+                  <h5 class="card-title">Staff Software Engineer, Android</h5>
+                  <p class="card-text text-muted">$150,000 - $172,550 USD Annually</p>
+                  <span class="badge bg-info">Health Insurance</span>
+                  <span class="badge bg-primary">Full-Time</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> US National</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">New</span>
+                  <h5 class="card-title">Account-Based Marketing Director</h5>
+                  <p class="card-text text-muted">$150,000 - $185,000 USD Annually</p>
+                  <span class="badge bg-info">Health Insurance</span>
+                  <span class="badge bg-primary">Full-Time</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> US National</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">New</span>
+                  <h5 class="card-title">UX Designer</h5>
+                  <p class="card-text text-muted">$100,000 - $120,000 USD Annually</p>
+                  <span class="badge bg-info">Remote</span>
+                  <span class="badge bg-primary">Contract</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> Remote</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">Hot</span>
+                  <h5 class="card-title">Data Scientist</h5>
+                  <p class="card-text text-muted">$130,000 - $150,000 USD Annually</p>
+                  <span class="badge bg-info">Health Insurance</span>
+                  <span class="badge bg-primary">Full-Time</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> US Only</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">Hot</span>
+                  <h5 class="card-title">Marketing Specialist</h5>
+                  <p class="card-text text-muted">$85,000 - $95,000 USD Annually</p>
+                  <span class="badge bg-info">Remote</span>
+                  <span class="badge bg-primary">Part-Time</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> Remote</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">New</span>
+                  <h5 class="card-title">Product Manager</h5>
+                  <p class="card-text text-muted">$140,000 - $160,000 USD Annually</p>
+                  <span class="badge bg-info">Health Insurance</span>
+                  <span class="badge bg-primary">Full-Time</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> US & Canada</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">Hot</span>
+                  <h5 class="card-title">DevOps Engineer</h5>
+                  <p class="card-text text-muted">$120,000 - $145,000 USD Annually</p>
+                  <span class="badge bg-info">Remote</span>
+                  <span class="badge bg-primary">Full-Time</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> Global</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-danger mb-2">New</span>
+                  <h5 class="card-title">Technical Writer</h5>
+                  <p class="card-text text-muted">$75,000 - $90,000 USD Annually</p>
+                  <span class="badge bg-info">Remote</span>
+                  <span class="badge bg-primary">Contract</span>
+                  <p class="mt-3"><i class="bi bi-geo-alt-fill"></i> Remote</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation outside cards -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#jobsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#jobsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- footer -->
+
+<footer class="footer bg-light py-5">
+  <div class="container">
+    <!-- Top Row: Logo + Social -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+      <a href="#" class="footer-logo mb-3 mb-md-0">
+        <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" alt="RemoteJobs.io Logo" height="40">
+      </a>
+
+      <div class="footer-social">
+        <a href="#" class="me-3 text-dark"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-dark"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Middle Row: Links -->
+    <div class="row mt-4">
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">About RemoteJobs.io</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-dark">Find Remote Jobs</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">How RemoteJobs.io Works</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Policies</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-dark">Privacy Policy</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">Terms of Use</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">CCPA/GDPR</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Customer Support</h6>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-telephone me-2"></i> 1-800-510-8550</li>
+          <li><i class="bi bi-calendar-event me-2"></i> Mon-Fri 9 AM - 6 PM CST</li>
+          <li><i class="bi bi-envelope me-2"></i> support@remotejobs.io</li>
+          <li class="mt-2"><a href="#" class="text-decoration-none text-dark">Contact Us</a></li>
+          <li><a href="#" class="text-decoration-none text-dark">Job Search Vigilance</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Bottom Row -->
+    <div class="text-center small text-muted">
+      © 2025, Sonaga Tech Limited, Hamilton, Zweigniederlassung Luzern
+    </div>
+  </div>
+</footer>
+
+
+
+ <script>
+
+const menuToggle = document.getElementById("menuToggle");
+const closeNav = document.getElementById("closeNav");
+const sideNav = document.getElementById("sideNav");
+
+menuToggle.addEventListener("click", () => {
+  sideNav.classList.add("active");
+  document.body.classList.add("nav-open");
+});
+
+closeNav.addEventListener("click", () => {
+  sideNav.classList.remove("active");
+  document.body.classList.remove("nav-open");
+});
+
+
+
+  const searchInput = document.getElementById('jobSearch');
+  const suggestionBox = document.getElementById('suggestions');
+  const suggestions = suggestionBox.getElementsByTagName('li');
+
+  // Function to show dropdown
+  function showSuggestions() {
+    suggestionBox.style.display = 'block';
+    let filter = searchInput.value.toLowerCase();
+    for (let i = 0; i < suggestions.length; i++) {
+      let text = suggestions[i].innerText.toLowerCase();
+      suggestions[i].style.display = text.includes(filter) ? '' : 'none';
+    }
+  }
+
+  // Show dropdown on focus
+  searchInput.addEventListener('focus', showSuggestions);
+
+  // Show & filter while typing
+  searchInput.addEventListener('input', showSuggestions);
+
+  // Hide dropdown when clicked outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-box')) {
+      suggestionBox.style.display = 'none';
+    }
+  });
+
+  // Set clicked suggestion into input
+  for (let i = 0; i < suggestions.length; i++) {
+    suggestions[i].addEventListener('click', function() {
+      searchInput.value = this.innerText;
+      suggestionBox.style.display = 'none';
+    });
+  }
+
+
+const mobileSearchToggle = document.getElementById("mobileSearchToggle");
+const searchOverlay = document.getElementById("searchOverlay");
+const closeSearch = document.getElementById("closeSearch");
+// const searchInput = document.getElementById("searchInput");
+const searchList = document.getElementById("searchList");
+
+mobileSearchToggle.addEventListener("click", () => {
+  searchOverlay.classList.add("active");
+  document.body.classList.add("overflow-hidden"); // stop background scroll
+});
+
+closeSearch.addEventListener("click", () => {
+  searchOverlay.classList.remove("active");
+  document.body.classList.remove("overflow-hidden");
+});
+
+// Fill input when list item is clicked
+searchList.querySelectorAll("li").forEach(item => {
+  item.addEventListener("click", () => {
+    searchInput.value = item.textContent.trim();
+  });
+});
+
+
+
+
+
+    const toggleBtn = document.getElementById("toggleMore");
+    const extraJobs = document.querySelector(".extra-jobs");
+
+    toggleBtn.addEventListener("click", () => {
+      if (extraJobs.style.display === "none" || extraJobs.style.display === "") {
+        extraJobs.style.display = "block";
+        toggleBtn.textContent = "Show Less ▲";
+      } else {
+        extraJobs.style.display = "none";
+        toggleBtn.textContent = "38 More ›";
+      }
+    });
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

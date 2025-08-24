@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remote Jobs - Find Online Remote Jobs</title>
+  <link rel="icon" type="image/png" href="img/remoteJobsLogo.svg">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: "Mulish", sans-serif;
+  font-style: normal;
+      
+    }
+
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .header img {
+      height: 35px;
+    }
+
+    /* Progress bar */
+    .header-bar {
+      height: 4px;
+      background: linear-gradient(to right, #0066ff 85%, #ddd 15%);
+    }
+
+    /* Main */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 100px;
+      height: 100px;
+      border: 15px solid #ddd;
+      border-top:15px solid #0057ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .main-content h3 {
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    /* Step list */
+    .steps {
+      text-align: left;
+      max-width: 400px;
+    }
+    .steps .step {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      opacity: 0.3;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .steps .step.active {
+      opacity: 1;
+    }
+
+    .steps .step-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      font-size: 14px;
+      color: white;
+    }
+    .step-icon.pink { background: #f8c9e0; color: #d63384; }
+    .step-icon.green { background: #d1f0d3; color: #198754; }
+    .step-icon.orange { background: #ffe0c7; color: #fd7e14; }
+
+    .steps strong {
+      display: block;
+      font-size: 15px;
+      color: #111;
+    }
+    .steps small {
+      color: #444;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+    <header class="border-bottom py-3">
+    <div class="container d-flex align-items-center">
+      <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" alt="logo" style="height:25px; margin-right:8px;">
+      <!-- <a href="#" class="logo text-decoration-none">remotejobs.io</a> -->
+    </div>
+  </header>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <!-- <div class="header">
+      <img src="https://via.placeholder.com/140x35?text=Logo" alt="Logo">
+    </div> -->
+    <div class="header-bar"></div>
+
+    <!-- Main -->
+    <div class="main-content">
+      <div class="spinner"></div>
+      <h3>Generating great jobs</h3>
+
+      <div class="steps">
+        <div class="step" id="step1">
+          <div class="step-icon pink">🔍</div>
+          <div><strong>Finding listings</strong></div>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-icon green">💲</div>
+          <div>
+            <strong>Customizing by Preferences</strong>
+            <small>$40,000+ Salary Jobs, Lagos, Nigeria</small>
+          </div>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-icon orange">📋</div>
+          <div><strong>Finalizing List</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Animate steps one by one
+    const steps = [document.getElementById("step1"), document.getElementById("step2"), document.getElementById("step3")];
+    let current = 0;
+
+    function showNextStep() {
+      if (current < steps.length) {
+        steps[current].classList.add("active");
+        current++;
+        setTimeout(showNextStep, 2000); // delay before showing next step
+      } else {
+        // Redirect after final step
+        setTimeout(() => {
+          window.location.href = "formjob.html"; // <-- change to your next page
+        }, 1500);
+      }
+    }
+
+    // Start animation after 1 second
+    setTimeout(showNextStep, 1000);
+  </script>
+</body>
+</html>

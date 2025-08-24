@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Jobs - Find Online Remote Jobs</title>
+  <link rel="icon" type="image/png" href="img/remoteJobsLogo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scrolling */
+      font-family: "Mulish", sans-serif;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+       font-family: "Mulish", sans-serif;
+  font-style: normal;
+      
+    }
+
+    header {
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    header img {
+      height: 25px;
+    }
+
+    /* Top progress */
+    .top-progress { height: 4px; background: #e6eefc; }
+    .top-progress .bar { height: 100%; width: 80%; background:#0d6efd; }
+
+    .page-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* center vertically */
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .toggle-btns .btn {
+      border-radius: 0;
+    }
+
+    .salary-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .progress-slider {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 8px;
+      background: #e9ecef;
+      border-radius: 5px;
+      margin: 40px auto;
+    }
+
+    .progress-slider .progress-fill {
+      height: 100%;
+      background: #007bff;
+      border-radius: 5px;
+      width: 0%;
+    }
+
+    .progress-slider input[type=range] {
+      position: absolute;
+      top: -7px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: transparent;
+      -webkit-appearance: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #007bff;
+      cursor: pointer;
+      border: none;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #007bff;
+      cursor: pointer;
+      border: none;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      background: #fff;
+      padding: 15px 0;
+      margin-top: auto;
+    }
+    .btn-outline-dark {
+      border-radius: 25px;
+      padding: 10px 50px;
+    }
+    .btn-success {
+      border-radius: 25px;
+      padding: 10px 45px;
+      background: #9cd86d;
+      color: #000;
+      border: none;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" alt="logo">
+  </header>
+
+  <!-- Top progress -->
+  <div class="top-progress"><div class="bar"></div></div>
+
+  <!-- Content -->
+  <main class="page-wrap">
+    <div class="alert alert-success py-2 w-100 text-center">
+      Great, we have jobs that <strong>meet or exceed</strong> your salary target.
+    </div>
+
+    <h4 class="fw-bold mb-3">What's the minimum you'd like to earn?</h4>
+
+    <!-- Toggle Salary / Hourly -->
+    <div class="toggle-btns btn-group mb-3" style="border: #0d6efd;">
+      <button id="salaryBtn" class="btn btn-primary active">Salary</button>
+      <button id="hourlyBtn" class="btn btn-outline-primary">Hourly</button>
+    </div>
+
+    <!-- Value -->
+    <div id="salaryDisplay" class="salary-value">$35,000</div>
+    <div id="salaryType" class="mb-2 text-muted">per year</div>
+
+    <!-- Custom Progress Slider -->
+    <div class="progress-slider">
+      <div id="progressFill" class="progress-fill"></div>
+      <input type="range" id="salaryRange" min="20000" max="200000" step="1000" value="35000">
+    </div>
+
+    <div class="mt-3">
+      <a href="sixthload.html" class="text-primary fw-bold" style="text-decoration: none;">Skip for now</a>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation (Fixed Footer) -->
+ <footer>
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="fourthload.html" class="btn btn-outline-dark">Back</a>
+     <p class="mb-0 small text-muted d-none d-md-block">
+      We'll match you with remote jobs perfect for you!
+    </p>
+      <a href="sixthload.html" class="btn btn-success">Next</a>
+    </div>
+  </footer>
+
+
+  <script>
+    const salaryBtn = document.getElementById("salaryBtn");
+    const hourlyBtn = document.getElementById("hourlyBtn");
+    const salaryDisplay = document.getElementById("salaryDisplay");
+    const salaryType = document.getElementById("salaryType");
+    const salaryRange = document.getElementById("salaryRange");
+    const progressFill = document.getElementById("progressFill");
+
+    let mode = "salary"; // default
+
+    function updateDisplay() {
+      let value = parseInt(salaryRange.value);
+      let min = parseInt(salaryRange.min);
+      let max = parseInt(salaryRange.max);
+      let percent = ((value - min) / (max - min)) * 100;
+      progressFill.style.width = percent + "%";
+
+      if (mode === "salary") {
+        salaryDisplay.textContent = `$${value.toLocaleString()}`;
+        salaryType.textContent = "per year";
+      } else {
+        let hourly = (value / 2080).toFixed(2); // 2080 hrs/year
+        salaryDisplay.textContent = `$${hourly}`;
+        salaryType.textContent = "per hour";
+      }
+    }
+
+    salaryRange.addEventListener("input", updateDisplay);
+
+    salaryBtn.addEventListener("click", () => {
+      mode = "salary";
+      salaryBtn.classList.add("btn-primary");
+      salaryBtn.classList.remove("btn-outline-primary");
+      hourlyBtn.classList.add("btn-outline-primary");
+      hourlyBtn.classList.remove("btn-primary");
+      updateDisplay();
+    });
+
+    hourlyBtn.addEventListener("click", () => {
+      mode = "hourly";
+      hourlyBtn.classList.add("btn-primary");
+      hourlyBtn.classList.remove("btn-outline-primary");
+      salaryBtn.classList.add("btn-white");
+      salaryBtn.classList.remove("btn-primary");
+      updateDisplay();
+    });
+
+    // Initialize
+    updateDisplay();
+  </script>
+
+</body>
+</html>

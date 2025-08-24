@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Remote Jobs - Find Online Remote Jobs</title>
+  <link rel="icon" type="image/png" href="img/remoteJobsLogo.svg">
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+        font-family: "Mulish", sans-serif;
+  font-style: normal;
+    }
+
+      .header {
+        
+      padding: 30px 30px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .header img {
+      height: 30px;
+    }
+    /* Top progress */
+    .top-progress { height: 4px; background: #e6eefc; }
+    .top-progress .bar { height: 100%; width: 70%; background:#0d6efd; }
+
+    /* Page spacing */
+    .page-wrap { min-height: 100dvh; display:flex; flex-direction:column; }
+
+    /* Info banner shown when user selects something */
+    .info-banner { max-width: 720px; margin: 20px auto 0; }
+
+    /* Heading */
+    .page-title { line-height: 1.25; }
+
+    /* Pills (category buttons) */
+    .category-btn {
+      --ring: 0 0 0 0 rgba(59,130,246,.0);
+      border: 1.5px solid #cfd6e3;
+      background: #fff;
+      border-radius: 9999px;
+      padding: 10px 16px;
+      font-weight: 500;
+      color:#111;
+      display:inline-flex;
+      align-items:center;
+      gap:.35rem;
+      transition: box-shadow .15s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
+      box-shadow: var(--ring);
+    }
+    .category-btn:hover { background:#f8fafc; border-color:#b8c3d6; }
+    .category-btn:focus-visible {
+      outline: 0;
+      box-shadow: 0 0 0 3px rgba(59,130,246,.35);
+    }
+    .category-btn.active {
+      background:#eefcf3;
+      border-color:#198754;
+      color:#0f5132;
+    }
+    .category-btn .mark { width: 1ch; display:inline-block; }
+
+    /* Selected badges container */
+    .selected-wrap { min-height: 38px; }
+    .selected-badge {
+      cursor:pointer;
+      font-size: .95rem;
+    }
+
+    /* Show more link */
+    .show-more { cursor:pointer; }
+
+    /* Bottom sticky nav */
+    footer {
+      border-top: 1px solid #ddd;
+      background: #fff;
+      padding: 15px 0;
+      margin-top: auto;
+    }
+    .btn-outline-dark {
+      border-radius: 25px;
+      padding: 10px 50px;
+    }
+    .btn-success {
+      border-radius: 25px;
+      padding: 10px 45px;
+      background: #9cd86d;
+      color: #000;
+      border: none;
+      font-weight: 500;
+    }
+   
+    /* .btn-next:disabled { opacity:.6; cursor:not-allowed; } */
+
+    /* Responsive helpers */
+    @media (max-width:576px){
+      .category-btn { padding: 10px 14px; }
+      .btn-back, .btn-next { padding: 12px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+      <header class="border-bottom py-3">
+    <div class="container d-flex align-items-center">
+      <img src="https://www.remotejobs.io/blobimages/rji/images/remoteJobsLogo.svg" alt="logo" style="height:25px; margin-right:8px;">
+      <!-- <a href="#" class="logo text-decoration-none">remotejobs.io</a> -->
+    </div>
+  </header>
+  <div class="page-wrap">
+    <!-- Top progress -->
+    <div class="top-progress"><div class="bar"></div></div>
+
+    <main class="container py-md-4"style="padding-top:4em">
+
+      <!-- Info banner (hidden until user selects something) -->
+      <div id="infoBanner" class="alert alert-success d-none info-banner mb-3 mb-md-4 text-center" role="status">
+        Awesome, we have <strong id="infoText">Accounting</strong> jobs for you!
+      </div>
+
+      <!-- Selected chips -->
+      <div class="selected-wrap text-center mb-3">
+        <div id="selectedChips"></div>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="page-title text-center fw-bold mb-3">
+        Pick up to 3 job categories that spark your interest.
+        <i class="bi bi-info-circle-fill text-primary"></i>
+      </h2>
+
+      <!-- Categories -->
+      <div id="categories" class="d-flex flex-wrap justify-content-center gap-2 gap-sm-3 mt-3">
+        <!-- First row -->
+        <button class="category-btn" data-label="Accounting"><span class="label">Accounting</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Administrative Assistant"><span class="label">Administrative Assistant</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Analyst"><span class="label">Analyst</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Bookkeeping"><span class="label">Bookkeeping</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Call Center"><span class="label">Call Center</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Chat Support"><span class="label">Chat Support</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Communications"><span class="label">Communications</span><span class="mark">+</span></button>
+
+        <!-- Second row -->
+        <button class="category-btn" data-label="Compliance"><span class="label">Compliance</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Consulting"><span class="label">Consulting</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Copywriting"><span class="label">Copywriting</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Creative"><span class="label">Creative</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Criminal Justice"><span class="label">Criminal Justice</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Customer Service"><span class="label">Customer Service</span><span class="mark">+</span></button>
+        <button class="category-btn" data-label="Cybersecurity"><span class="label">Cybersecurity</span><span class="mark">+</span></button>
+
+        <!-- Hidden extras -->
+        <button class="category-btn d-none" data-extra="1" data-label="Data Analyst"><span class="label">Data Analyst</span><span class="mark">+</span></button>
+        <button class="category-btn d-none" data-extra="1" data-label="Data Entry"><span class="label">Data Entry</span><span class="mark">+</span></button>
+        <button class="category-btn d-none" data-extra="1" data-label="Data Science"><span class="label">Data Science</span><span class="mark">+</span></button>
+        <button class="category-btn d-none" data-extra="1" data-label="Design"><span class="label">Design</span><span class="mark">+</span></button>
+        <button class="category-btn d-none" data-extra="1" data-label="DevOps"><span class="label">DevOps</span><span class="mark">+</span></button>
+      </div>
+
+      <!-- Show more -->
+      <p class="text-center mt-3">
+        <a id="toggleMore" class="show-more fw-semibold text-primary" style="text-decoration: none;">Show more categories</a>
+      </p>
+
+    </main>
+
+    <!-- Bottom nav -->
+   <footer>
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="thirdloads.html" class="btn btn-outline-dark">Back</a>
+     <p class="mb-0 small text-muted d-none d-md-block">
+      We'll match you with remote jobs perfect for you!
+    </p>
+      <a href="fifthload.html" class="btn btn-success">Next</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const maxSel = 3;
+    const selectedChips = document.getElementById('selectedChips');
+    const infoBanner = document.getElementById('infoBanner');
+    const infoText = document.getElementById('infoText');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // Toggle extra categories
+    document.getElementById('toggleMore').addEventListener('click', function () {
+      const extras = document.querySelectorAll('[data-extra="1"]');
+      const expanded = this.getAttribute('data-expanded') === '1';
+      extras.forEach(el => el.classList.toggle('d-none'));
+      this.textContent = expanded ? 'Show more categories' : 'Show fewer categories';
+      this.setAttribute('data-expanded', expanded ? '0' : '1');
+    });
+
+    // Category button logic
+    function updateState() {
+      const activeBtns = document.querySelectorAll('.category-btn.active');
+      // Update badges
+      selectedChips.innerHTML = '';
+      activeBtns.forEach(btn => {
+        const name = btn.dataset.label;
+        const badge = document.createElement('span');
+        badge.className = 'badge rounded-pill text-bg-primary selected-badge m-1';
+        badge.textContent = name;
+        badge.title = 'Click to remove';
+        badge.addEventListener('click', () => toggleBtn(btn));
+        selectedChips.appendChild(badge);
+      });
+      // Info banner & Next state
+      if (activeBtns.length > 0) {
+        const last = activeBtns[activeBtns.length - 1].dataset.label;
+        infoText.textContent = last;
+        infoBanner.classList.remove('d-none');
+      } else {
+        infoBanner.classList.add('d-none');
+      }
+      nextBtn.disabled = activeBtns.length === 0;
+    }
+
+    function toggleBtn(btn) {
+      const isActive = btn.classList.contains('active');
+      const selectedCount = document.querySelectorAll('.category-btn.active').length;
+
+      if (!isActive && selectedCount >= maxSel) {
+        // brief nudge
+        btn.animate([{transform:'scale(1)'},{transform:'scale(1.05)'},{transform:'scale(1)'}], {duration:250});
+        alert('You can only select up to 3 categories.');
+        return;
+      }
+
+      btn.classList.toggle('active');
+      const mark = btn.querySelector('.mark');
+      mark.textContent = btn.classList.contains('active') ? '✓' : '+';
+      btn.setAttribute('aria-pressed', btn.classList.contains('active'));
+
+      updateState();
+    }
+
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => toggleBtn(btn));
+      btn.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleBtn(btn); }
+      });
+    });
+
+    // Example next handler
+    nextBtn.addEventListener('click', () => {
+      const chosen = [...document.querySelectorAll('.category-btn.active')].map(b => b.dataset.label);
+      console.log('Selected:', chosen);
+      // location.href = 'next-step.html' // <- your real next step
+    });
+  </script>
+</body>
+</html>
