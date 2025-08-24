@@ -560,13 +560,13 @@ searchList.querySelectorAll("li").forEach(item => {
 
 // email.js
 
-emailjs.init("4x8hgewhc_4jz_5SS"); // Replace with your actual public key
+emailjs.init("3P0LcnLoOSowYR8-5"); // Replace with your actual public key
 
-  document.querySelectorAll("form")[2].addEventListener("submit", function (e) {
+  document.querySelectorAll("form")[1].addEventListener("submit", function (e) {
     console.log(e.target)
     e.preventDefault(); // prevent default form submission
 
-    emailjs.sendForm("service_a87l5zm", "template_h1ddjws", this)
+    emailjs.sendForm("service_rb2zknn", "template_mr14ebe", this)
       .then(function () {
         console.log("Form submitted successfully!");
           e.target.reset();
